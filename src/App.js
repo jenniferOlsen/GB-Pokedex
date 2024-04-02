@@ -42,7 +42,17 @@ function App() {
         details.id = id
         details.types = types
         details.moves = moves
-        details.evolution = chain.evolves_to
+        details.evolution.push(chain.species.name)
+
+        const getEvolutionChain = (chain) => {
+            if (chain.evolves_to.length > 0) {
+                chain.evolves_to.forEach(evolution => {
+                    details.evolution.push(evolution.species.name)
+                    getEvolutionChain(evolution)
+                })
+            }
+        }
+        getEvolutionChain(chain);
 
         setPokemonDetails(details)
 
@@ -96,9 +106,15 @@ function App() {
                                     </div>
                                     : <p>No Moves</p>}
                             </div>
-                            {console.log(pokemonDetails.evolution)}
                             {pokemonDetails.evolution.length > 0 ?
-                                <h2 className={'pokedex__details_evolutions'}>Evolutions</h2>
+                                <div>
+                                    <h2 className={'pokedex__details_evolutions'}>Evolutions</h2>
+                                    <ul>
+                                        {pokemonDetails.evolution.map(evolution => {
+                                            return <li key={evolution}>{evolution}</li>
+                                        })}
+                                    </ul>
+                                </div>
                                 : <p>No Evolutions</p>}
                         </div>
                     )
