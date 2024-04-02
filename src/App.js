@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchAllPokemon } from "./api";
+import { fetchAllPokemon, fetchEvolutionChainById, fetchPokemonDetailsByName } from "./api";
 
 function App() {
     const [pokemonIndex, setPokemonIndex] = useState([])
@@ -29,13 +29,29 @@ function App() {
     }
 
     const onGetDetails = (name) => async () => {
-        /** code here **/
+        const details = {
+            name: name,
+            types: [],
+            moves: [],
+            evolution: [],
+            id: null
+        }
+        const { id, types, moves } = await fetchPokemonDetailsByName(name)
+        const { chain } = await fetchEvolutionChainById(id)
+
+        details.id = id
+        details.types = types
+        details.moves = moves
+        details.evolution = chain.evolves_to
+
+        setPokemonDetails(details)
+
     }
 
     return (
         <div className={'pokedex__container'}>
             <div className={'pokedex__search-input'}>
-                <input value={searchValue} onChange={onSearchValueChange} placeholder={'Search Pokemon'} />
+                <input value={searchValue} onChange={onSearchValueChange} placeholder={'Search Pokemon'} aria-label="Search Pokemon" />
             </div>
             <div className={'pokedex__content'}>
                 {pokemon.length > 0 ? (
@@ -57,7 +73,33 @@ function App() {
                 {
                     pokemonDetails && (
                         <div className={'pokedex__details'}>
-                            {/*  code here  */}
+                            <h1 className={'pokedex__details_name'}>{pokemonDetails.name}</h1>
+                            <div className={'pokedex__details_types'}>
+                                {pokemonDetails.types.length > 0 ?
+                                    <div>
+                                        <h2>Types</h2>
+                                        <ul>
+                                            {pokemonDetails.types.map(type => {
+                                                return <li key={type.type.name}>{type.type.name}</li>
+                                            })}
+                                        </ul>
+                                    </div>
+                                    : <p>No Types</p>}
+                                {pokemonDetails.moves.length > 0 ?
+                                    <div>
+                                        <h2>Moves</h2>
+                                        <ul>
+                                            {pokemonDetails.moves.map(moves => {
+                                                return <li key={moves.move.name}>{moves.move.name}</li>
+                                            })}
+                                        </ul>
+                                    </div>
+                                    : <p>No Moves</p>}
+                            </div>
+                            {console.log(pokemonDetails.evolution)}
+                            {pokemonDetails.evolution.length > 0 ?
+                                <h2 className={'pokedex__details_evolutions'}>Evolutions</h2>
+                                : <p>No Evolutions</p>}
                         </div>
                     )
                 }

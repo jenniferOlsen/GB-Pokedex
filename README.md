@@ -49,5 +49,8 @@ Please take some time to answer the following questions. Your answers should go 
 - Given more time, what would you suggest for improving the performance of this app?
 
 - Is there anything you would consider doing if we were to go live with this app?
+  - The search input needs a visible label for accessibilty.
+  - The Pokemon list should be marked up as a list.
+  - Add images to the details card.
 
 - What was the most challenging aspect of this work for you (if at all)?
