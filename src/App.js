@@ -9,7 +9,7 @@ function App() {
 
     useEffect(() => {
         const fetchPokemon = async () => {
-            const {results: pokemonList} = await fetchAllPokemon()
+            const { results: pokemonList } = await fetchAllPokemon()
 
             setPokemon(pokemonList)
             setPokemonIndex(pokemonList)
@@ -18,15 +18,14 @@ function App() {
         fetchPokemon().then(() => {
             /** noop **/
         })
-    }, [searchValue])
+    }, [])
 
     const onSearchValueChange = (event) => {
         const value = event.target.value
         setSearchValue(value)
 
-        setPokemon(
-            pokemonIndex.filter(monster => !monster.name.includes(value))
-        )
+        const filteredPokemon = pokemonIndex.filter(monster => monster.name.includes(value))
+        setPokemon(filteredPokemon)
     }
 
     const onGetDetails = (name) => async () => {
@@ -36,10 +35,10 @@ function App() {
     return (
         <div className={'pokedex__container'}>
             <div className={'pokedex__search-input'}>
-                <input value={searchValue} onChange={onSearchValueChange} placeholder={'Search Pokemon'}/>
+                <input value={searchValue} onChange={onSearchValueChange} placeholder={'Search Pokemon'} />
             </div>
             <div className={'pokedex__content'}>
-                {pokemon.length > 0 && (
+                {pokemon.length > 0 ? (
                     <div className={'pokedex__search-results'}>
                         {
                             pokemon.map(monster => {
@@ -54,7 +53,7 @@ function App() {
                             })
                         }
                     </div>
-                )}
+                ) : <p>No Results Found</p>}
                 {
                     pokemonDetails && (
                         <div className={'pokedex__details'}>
