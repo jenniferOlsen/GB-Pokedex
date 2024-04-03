@@ -47,10 +47,14 @@ When you are finished, please upload your completed work to your Github and invi
 Please take some time to answer the following questions. Your answers should go directly in this `readme`.
 
 - Given more time, what would you suggest for improving the performance of this app?
+  - The recursive `forEach` loop to get the evolution chain seems like a performance issue waiting to happen. It should be okay since Pokemon don't evolve into more than a few species. (I assume. I know nothing about Pokemon.) But definetly something I'd want to keep an eye on in a real app with unknown data.
 
 - Is there anything you would consider doing if we were to go live with this app?
+  - We should add a title, both a page title and a main heading.
   - The search input needs a visible label for accessibilty.
-  - The Pokemon list should be marked up as a list.
-  - Add images to the details card.
+  - The Pokemon list should probably be marked up as a list for better screen reader usability.
+  - Add images to the details card and/or the Pokemon list items.
+  - I can't tell if the main Pokemon list is sorted in a logical fashion (again, I know nothing about Pokemon). If not, I'd like it sorted alphebetically.
 
 - What was the most challenging aspect of this work for you (if at all)?
+  - Getting the full evolution chain was a challenge, especially since I'm not familiar enough with Pokemon to know how many species I should be expecting.
