@@ -55,7 +55,7 @@ Please take some time to answer the following questions. Your answers should go 
   - The Pokemon list should probably be marked up as a list for better screen reader usability.
   - Add images to the details card and/or the Pokemon list items.
   - I can't tell if the main Pokemon list is sorted in a logical fashion (again, I know nothing about Pokemon). If not, I'd like it sorted alphebetically.
-  - It'd be nice if the species names were links to show the details for that Pokemon. 
+  - It'd be nice if the species names under Evolution were links to show the details for that Pokemon. 
   - I could see users wanting to compare multiple Pokemon details, but that would require a fairly significant redesign.
 
 - What was the most challenging aspect of this work for you (if at all)?
