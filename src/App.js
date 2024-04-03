@@ -52,10 +52,12 @@ function App() {
                 })
             }
         }
-        getEvolutionChain(chain);
+        getEvolutionChain(chain)
 
         setPokemonDetails(details)
 
+        // Move focus to detail card so it's announced for screen readers
+        document.getElementById(details.id).focus();
     }
 
     return (
@@ -83,7 +85,7 @@ function App() {
                 {
                     pokemonDetails && (
                         <div className={'pokedex__details'}>
-                            <h1 className={'pokedex__details_name'}>{pokemonDetails.name}</h1>
+                            <h1 className={'pokedex__details_name'} tabIndex={-1} id={pokemonDetails.id}>{pokemonDetails.name}</h1>
                             <div className={'pokedex__details_types'}>
                                 {pokemonDetails.types.length > 0 ?
                                     <div>
