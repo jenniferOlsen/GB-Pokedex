@@ -73,7 +73,7 @@ function App() {
                                         <div>
                                             {monster.name}
                                         </div>
-                                        <button onClick={onGetDetails(monster.name)}>Get Details</button>
+                                        <button onClick={onGetDetails(monster.name)} aria-label={`Get details for ${monster.name}`}>Get Details</button>
                                     </div>
                                 )
                             })
@@ -107,8 +107,8 @@ function App() {
                                     : <p>No Moves</p>}
                             </div>
                             {pokemonDetails.evolution.length > 0 ?
-                                <div>
-                                    <h2 className={'pokedex__details_evolutions'}>Evolutions</h2>
+                                <div className={'pokedex__details_evolutions'}>
+                                    <h2>Evolutions</h2>
                                     <ul>
                                         {pokemonDetails.evolution.map(evolution => {
                                             return <li key={evolution}>{evolution}</li>

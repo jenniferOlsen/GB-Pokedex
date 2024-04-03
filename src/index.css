@@ -21,6 +21,7 @@ body {
 }
 
 .pokedex__search-input {
+  margin-bottom: 1rem;
 }
 
 .pokedex__search-results {
@@ -44,6 +45,10 @@ body {
   height: fit-content;
 }
 
+.pokedex__details h2 {
+  text-align: center;
+}
+
 .pokedex__details_name {
   margin-top: 0.25rem;
   text-align: center;
@@ -55,6 +60,15 @@ body {
 }
 
 .pokedex__details_types ul { 
-  max-height: 250px;
+  max-height: 220px;
   overflow: scroll;
+}
+
+.pokedex__details_evolutions ul { 
+  list-style: none;
+  display: inline-flex;
+  gap: .5rem;
+  padding: 0;
+  font-style: italic;
+  margin-block-start: 0;
 }
